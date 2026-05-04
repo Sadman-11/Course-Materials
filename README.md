@@ -9,6 +9,16 @@ This repository serves as a centralized hub for course materials from East West 
 **University**: East West University  
 **Repository Type**: Open Educational Resource (OER)
 
+## � Where to Find Us
+
+These course materials are available on multiple platforms:
+
+- **GitHub**: [github.com/Sadman-11/Course-Materials](https://github.com/Sadman-11/Course-Materials)
+- **Google Drive**: [View on Google Drive](https://drive.google.com/drive/folders/1jTPTsKcrJIgU9ciUM1sSpYe0qig2MvZW?usp=drive_link)
+- **Mirror/Index**: [mirror.sadmananik.workers.dev](https://mirror.sadmananik.workers.dev/4:/)
+
+Choose the platform that works best for you! All platforms maintain synchronized content.
+
 ## 📁 Repository Structure
 
 The repository is organized by **Course Code** and **Instructor Name**. Each course folder typically contains:
