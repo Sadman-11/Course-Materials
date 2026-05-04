@@ -1,0 +1,807 @@
+\documentclass[12pt,a4paper]{article}
+\setlength{\headheight}{14.5pt}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{float}
+
+\geometry{margin=1in}
+
+% Prevent orphans and widows
+\widowpenalty=10000
+\clubpenalty=10000
+
+% Allow flexible page bottoms to prevent awkward splits
+\raggedbottom
+
+% Keep sections together - require minimum space before starting a new section
+\titleformat{\section}
+  {\needspace{8\baselineskip}\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\needspace{6\baselineskip}\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\needspace{5\baselineskip}\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% Code listing style
+\lstdefinestyle{javastyle}{
+    language=Java,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red},
+    commentstyle=\color{green!60!black},
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    rulecolor=\color{black},
+    tabsize=4,
+    breaklines=true,
+    breakatwhitespace=true,
+    showstringspaces=false,
+    captionpos=b
+}
+
+\lstset{style=javastyle}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Smart Task Manager}
+\lhead{Project Report}
+\rfoot{Page \thepage}
+
+\begin{document}
+
+% Custom Title Page
+\begin{titlepage}
+\centering
+
+% University Logo and Name
+\includegraphics[width=0.45\textwidth]{logo.png}\\[0.3cm]
+%{\Large\textbf{EAST WEST UNIVERSITY}}\\[2cm]
+
+% Course and Project Info
+{\large\textcolor{blue}{CSE110: Object Oriented Programming (Fall 2025)}}\\[0.5cm]
+{\LARGE\textbf{Project Report}}\\[0.3cm]
+{\Large\textbf{Smart Task Manager}}\\[2.5cm]
+
+% Course Details Table
+\begin{flushleft}
+\hspace{2cm}
+\begin{tabular}{@{}ll}
+\textbf{Course Code} & : CSE110 \\[0.3cm]
+\textbf{Course Title} & : Object Oriented Programming \\[0.3cm]
+\textbf{Instructor} & : Dr. Md. Hasanul Ferdaus \\[0.3cm]
+\textbf{Section} & : 04 \\[0.3cm]
+\textbf{Submitted by} & : Sadman Showmik Anik (2025-1-60-055) \\[0.3cm]
+\textbf{Date of Submission} & : 26-12-2025 \\
+\end{tabular}
+\end{flushleft}
+
+\vfill
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%==============================================================================
+\section{Introduction}
+%==============================================================================
+
+The \textbf{Smart Task Manager} is an interactive console-based Java application designed to help users organize and manage their daily tasks efficiently. The application allows users to create, track, and manage both personal and work-related tasks through a user-friendly menu-driven interface.
+
+\subsection{Motivation and Purpose}
+
+The motivation behind creating this application was to develop a practical task management tool that demonstrates core Object-Oriented Programming (OOP) concepts while providing real utility. The application helps users stay organized by categorizing tasks, tracking completion status, and persisting data between sessions.
+
+\subsection{Main Features}
+
+\begin{itemize}
+    \item \textbf{Add Tasks}: Create new work or personal tasks with titles and descriptions
+    \item \textbf{Mark Completion}: Mark tasks as completed with status tracking
+    \item \textbf{View Tasks}: Display all tasks, completed tasks only, or pending tasks only
+    \item \textbf{Data Persistence}: Save and load tasks from file for data retention
+    \item \textbf{Interactive Menu}: User-friendly console interface with visual formatting
+\end{itemize}
+
+\subsection{OOP Concepts Demonstrated}
+
+\begin{itemize}
+    \item \textbf{Class and Object}: Multiple classes representing different entities (Task, WorkTask, PersonalTask, TaskManager)
+    \item \textbf{Encapsulation}: Private fields with public getter/setter methods
+    \item \textbf{Inheritance}: WorkTask and PersonalTask extending the abstract Task class
+    \item \textbf{Polymorphism}: Overridden methods providing different behaviors in subclasses
+    \item \textbf{Exception Handling}: Custom TaskNotFoundException and try-catch blocks
+\end{itemize}
+\newpage
+%==============================================================================
+\section{System Design}
+%==============================================================================
+
+\subsection{Overview of the System Structure}
+
+The Smart Task Manager follows a hierarchical class structure with clear separation of concerns:
+
+\begin{verbatim}
+TaskManager (Main Application)
+    |
+    +-- Task (Abstract Base Class)
+    |       |
+    |       +-- WorkTask (Subclass)
+    |       |
+    |       +-- PersonalTask (Subclass)
+    |
+    +-- TaskNotFoundException (Custom Exception)
+\end{verbatim}
+
+\subsection{Program Flow (Start to End)}
+
+\begin{enumerate}
+    \item \textbf{Startup}: \texttt{TaskManager.main()} creates a TaskManager instance
+    \item \textbf{Load Data}: \texttt{loadTasksFromFile()} loads any previously saved tasks
+    \item \textbf{Display Welcome}: Shows welcome banner to user
+    \item \textbf{Main Loop}: Displays menu and processes user choices
+    \item \textbf{User Operations}: Add tasks, mark completed, view tasks, etc.
+    \item \textbf{Save \& Exit}: Saves tasks to file and exits gracefully
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\subsection{Class Descriptions}
+%------------------------------------------------------------------------------
+
+\subsubsection{Class: Task}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Attribute} & \textbf{Description} \\
+\hline
+Class Name & Task \\
+\hline
+Parent Class & None (Abstract base class) \\
+\hline
+Purpose & Serves as the abstract base class for all task types. Defines common attributes and behaviors that all tasks share. \\
+\hline
+\end{tabular}
+\caption{Task Class Overview}
+\end{table}
+\newpage
+\textbf{Key Fields (Encapsulated Variables):}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|p{6cm}|}
+\hline
+\textbf{Field} & \textbf{Type} & \textbf{Access} & \textbf{Description} \\
+\hline
+id & int & private & Unique identifier for each task \\
+\hline
+title & String & private & The title/name of the task \\
+\hline
+description & String & private & Detailed description of the task \\
+\hline
+isCompleted & boolean & private & Completion status flag \\
+\hline
+idCounter & static int & private & Auto-incrementing counter for unique IDs \\
+\hline
+\end{tabular}
+\caption{Task Class Fields}
+\end{table}
+
+\textbf{Key Methods:}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Method} & \textbf{Return Type} & \textbf{Description} \\
+\hline
+getId() & int & Returns the task's unique ID \\
+\hline
+getTitle() & String & Returns the task title \\
+\hline
+setTitle(String) & void & Sets a new title \\
+\hline
+getDescription() & String & Returns the task description \\
+\hline
+setDescription(String) & void & Sets a new description \\
+\hline
+isCompleted() & boolean & Returns completion status \\
+\hline
+setCompleted(boolean) & void & Sets completion status \\
+\hline
+getDetails() & abstract String & Abstract method for subclass implementation \\
+\hline
+getTaskType() & abstract String & Abstract method returning task type \\
+\hline
+toFileString() & String & Converts task to file-saveable format \\
+\hline
+\end{tabular}
+\caption{Task Class Methods}
+\end{table}
+
+\subsubsection{Class: WorkTask}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Attribute} & \textbf{Description} \\
+\hline
+Class Name & WorkTask \\
+\hline
+Parent Class & Task \\
+\hline
+Purpose & Represents work-related tasks with specific formatting. Extends Task and provides work-specific implementation of abstract methods. \\
+\hline
+\end{tabular}
+\caption{WorkTask Class Overview}
+\end{table}
+
+\textbf{Key Fields:} Inherits all fields from Task class. No additional fields.
+
+\textbf{Key Methods:}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Method} & \textbf{Return Type} & \textbf{Description} \\
+\hline
+getTaskType() & String & Returns "WorkTask" \\
+\hline
+getDetails() & String & Returns formatted work task details with box-style borders \\
+\hline
+truncate(String, int) & String & Helper method to truncate long strings \\
+\hline
+\end{tabular}
+\caption{WorkTask Class Methods}
+\end{table}
+
+\subsubsection{Class: PersonalTask}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Attribute} & \textbf{Description} \\
+\hline
+Class Name & PersonalTask \\
+\hline
+Parent Class & Task \\
+\hline
+Purpose & Represents personal tasks with specific formatting. Extends Task and provides personal-specific implementation of abstract methods. \\
+\hline
+\end{tabular}
+\caption{PersonalTask Class Overview}
+\end{table}
+
+\textbf{Key Fields:} Inherits all fields from Task class. No additional fields.
+
+\textbf{Key Methods:}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Method} & \textbf{Return Type} & \textbf{Description} \\
+\hline
+getTaskType() & String & Returns "PersonalTask" \\
+\hline
+getDetails() & String & Returns formatted personal task details with double-line borders \\
+\hline
+truncate(String, int) & String & Helper method to truncate long strings \\
+\hline
+\end{tabular}
+\caption{PersonalTask Class Methods}
+\end{table}
+
+\subsubsection{Class: TaskManager}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Attribute} & \textbf{Description} \\
+\hline
+Class Name & TaskManager \\
+\hline
+Parent Class & None \\
+\hline
+Purpose & Main application class that handles user interaction, task storage, and file I/O operations. Provides the menu-driven interface. \\
+\hline
+\end{tabular}
+\caption{TaskManager Class Overview}
+\end{table}
+
+\textbf{Key Fields (Encapsulated Variables):}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|p{5cm}|}
+\hline
+\textbf{Field} & \textbf{Type} & \textbf{Access} & \textbf{Description} \\
+\hline
+tasks & ArrayList$<$Task$>$ & private & Collection storing all tasks (polymorphic) \\
+\hline
+scanner & Scanner & private & Input reader for user interaction \\
+\hline
+DATA\_FILE & static final String & private & File path for data persistence \\
+\hline
+\end{tabular}
+\caption{TaskManager Class Fields}
+\end{table}
+\newpage
+\textbf{Key Methods:}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|p{6cm}|}
+\hline
+\textbf{Method} & \textbf{Return Type} & \textbf{Description} \\
+\hline
+main(String[]) & static void & Application entry point \\
+\hline
+run() & void & Main application loop \\
+\hline
+displayMenu() & void & Shows menu options \\
+\hline
+addNewTask() & void & Creates new tasks \\
+\hline
+markTaskCompleted() & void & Marks tasks as done \\
+\hline
+displayAllTasks() & void & Shows all tasks \\
+\hline
+displayCompletedTasks() & void & Shows completed tasks \\
+\hline
+displayPendingTasks() & void & Shows pending tasks \\
+\hline
+saveTasksToFile() & void & Persists tasks to file \\
+\hline
+loadTasksFromFile() & void & Loads tasks from file \\
+\hline
+validateTaskIndex(int) & void & Validates task index, throws exception \\
+\hline
+parseTaskFromLine(String) & Task & Parses task from file line \\
+\hline
+\end{tabular}
+\caption{TaskManager Class Methods}
+\end{table}
+
+\subsubsection{Class: TaskNotFoundException}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Attribute} & \textbf{Description} \\
+\hline
+Class Name & TaskNotFoundException \\
+\hline
+Parent Class & Exception \\
+\hline
+Purpose & Custom exception class for handling invalid task access operations. Thrown when a user attempts to access a non-existent task. \\
+\hline
+\end{tabular}
+\caption{TaskNotFoundException Class Overview}
+\end{table}
+
+\textbf{Key Methods (Constructors):}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{6cm}|p{7cm}|}
+\hline
+\textbf{Constructor} & \textbf{Description} \\
+\hline
+TaskNotFoundException(String) & Creates exception with custom message \\
+\hline
+TaskNotFoundException(String, Throwable) & Creates exception with message and cause \\
+\hline
+TaskNotFoundException(int, int) & Creates exception with index range information \\
+\hline
+\end{tabular}
+\caption{TaskNotFoundException Constructors}
+\end{table}
+\newpage
+%------------------------------------------------------------------------------
+\subsection{Inheritance and Polymorphism}
+%------------------------------------------------------------------------------
+
+\subsubsection{Inheritance Hierarchy}
+
+\begin{verbatim}
+Exception
+    +-- TaskNotFoundException
+
+Task (abstract)
+    +-- WorkTask
+    +-- PersonalTask
+\end{verbatim}
+
+\subsubsection{Overridden Methods and Behavior Differences}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{5cm}|p{5cm}|}
+\hline
+\textbf{Method} & \textbf{WorkTask Behavior} & \textbf{PersonalTask Behavior} \\
+\hline
+getTaskType() & Returns "WorkTask" & Returns "PersonalTask" \\
+\hline
+getDetails() & Returns task details with single-line box borders & Returns task details with double-line box borders \\
+\hline
+\end{tabular}
+\caption{Overridden Methods Comparison}
+\end{table}
+
+\textbf{Polymorphism in Action:}
+The \texttt{ArrayList<Task>} in TaskManager stores both WorkTask and PersonalTask objects. When iterating and calling \texttt{task.getDetails()}, Java's dynamic dispatch ensures the correct subclass method is executed based on the actual object type.
+
+%------------------------------------------------------------------------------
+\subsection{Encapsulation}
+%------------------------------------------------------------------------------
+\textbf{Example from Task class:}
+
+\begin{lstlisting}[caption={Encapsulation in Task Class}]
+// Private fields - cannot be accessed directly from outside
+private int id;
+private String title;
+private String description;
+private boolean isCompleted;
+
+// Public getters - provide read access
+public int getId() { return id; }
+public String getTitle() { return title; }
+
+// Public setters - provide write access with potential validation
+public void setTitle(String title) { this.title = title; }
+public void setCompleted(boolean completed) { 
+    this.isCompleted = completed; 
+}
+\end{lstlisting}
+\newpage
+\textbf{Benefits of Encapsulation Used:}
+\begin{enumerate}
+    \item \textbf{Data Protection}: External code cannot directly modify internal state
+    \item \textbf{Validation Opportunity}: Setters can validate input before assignment
+    \item \textbf{Implementation Flexibility}: Internal representation can change without affecting external code
+    \item \textbf{ID Management}: The \texttt{id} field has no setter, ensuring IDs remain unique and immutable
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\subsection{Exception Handling Strategy}
+%------------------------------------------------------------------------------
+
+\subsubsection{Types of Exceptions Handled}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{4cm}|p{5cm}|}
+\hline
+\textbf{Exception Type} & \textbf{Where Handled} & \textbf{Purpose} \\
+\hline
+NumberFormatException & run(), addNewTask(), markTaskCompleted() & Handles invalid numeric input from user \\
+\hline
+InputMismatchException & run() & Catches scanner input type mismatches \\
+\hline
+TaskNotFoundException & markTaskCompleted() & Custom exception for invalid task index access \\
+\hline
+IOException & saveTasksToFile(), loadTasksFromFile() & Handles file read/write errors \\
+\hline
+Exception (general) & parseTaskFromLine() & Catches any parsing errors when loading file \\
+\hline
+\end{tabular}
+\caption{Exception Types and Handling Locations}
+\end{table}
+
+\subsubsection{Why Exception Handling is Necessary}
+
+\begin{enumerate}
+    \item \textbf{User Input Validation}: Users may enter text when numbers are expected
+    \item \textbf{Boundary Checking}: Users may request tasks with invalid indices
+    \item \textbf{File Operations}: File may be missing, corrupted, or inaccessible
+    \item \textbf{Program Robustness}: Prevents crashes and provides meaningful error messages
+\end{enumerate}
+\newpage
+%==============================================================================
+\section{Implementation Details}
+%==============================================================================
+
+\subsection{Important Code Snippets}
+
+\subsubsection{Constructor Example (Task.java)}
+
+\begin{lstlisting}[caption={Task Constructor}]
+public Task(String title, String description) {
+    this.id = idCounter++;           // Auto-generate unique ID
+    this.title = title;
+    this.description = description;
+    this.isCompleted = false;        // New tasks start as incomplete
+}
+\end{lstlisting}
+
+\textit{This constructor demonstrates encapsulation by initializing private fields and using a static counter for automatic ID generation.}
+
+\subsubsection{Overridden Method Example (WorkTask.java)}
+
+\begin{lstlisting}[caption={WorkTask getDetails() Method}]
+@Override
+public String getDetails() {
+    String status = isCompleted() ? "Completed" : "Pending";
+    return String.format(
+        "[WORK TASK] ID: %d\n" +
+        "Title: %s\n" +
+        "Description: %s\n" +
+        "Status: %s",
+        getId(), truncate(getTitle(), 32),
+        truncate(getDescription(), 27), status
+    );
+}
+\end{lstlisting}
+
+\textit{This method overrides the abstract \texttt{getDetails()} from Task class, demonstrating polymorphism. Each subclass provides its own unique formatting.}
+\newpage
+\subsubsection{Try-Catch Block Example (TaskManager.java)}
+
+\begin{lstlisting}[caption={Exception Handling Example}]
+try {
+    String indexInput = scanner.nextLine().trim();
+    int index = Integer.parseInt(indexInput);
+    
+    // Validate index and throw custom exception if invalid
+    validateTaskIndex(index);
+    
+    Task task = tasks.get(index);
+    task.setCompleted(true);
+    System.out.println("\nTask marked as completed!");
+    
+} catch (NumberFormatException e) {
+    System.out.println("\nInvalid input! Please enter a valid number.");
+} catch (TaskNotFoundException e) {
+    System.out.println("\nError: " + e.getMessage());
+}
+\end{lstlisting}
+
+\textit{This demonstrates exception handling with multiple catch blocks for different exception types.}
+
+\subsubsection{Custom Exception Class (TaskNotFoundException.java)}
+
+\begin{lstlisting}[caption={Custom Exception Class}]
+public class TaskNotFoundException extends Exception {
+    public TaskNotFoundException(String message) {
+        super(message);
+    }
+    
+    public TaskNotFoundException(int index, int maxIndex) {
+        super("Task not found at index " + index + 
+              ". Valid range: 0 to " + maxIndex);
+    }
+}
+\end{lstlisting}
+
+\textit{Custom exception providing meaningful error messages for invalid task access attempts.}
+
+%------------------------------------------------------------------------------
+\subsection{User Interaction Flow}
+%------------------------------------------------------------------------------
+
+The program uses a menu-driven console interface:
+
+\textbf{Main Menu Display:}
+\begin{minipage}{\linewidth}
+\begin{verbatim}
++----------------------------------------------+
+|              MAIN MENU                       |
++----------------------------------------------+
+|  1. Add a New Task                           |
+|  2. Mark Task as Completed                   |
+|  3. Display All Tasks                        |
+|  4. Display Completed Tasks                  |
+|  5. Display Pending Tasks                    |
+|  6. Save Tasks to File                       |
+|  7. Exit                                     |
++----------------------------------------------+
+Enter your choice: _
+\end{verbatim}
+\end{minipage}
+
+\textbf{Adding a Task Flow:}
+\begin{minipage}{\linewidth}
+\begin{verbatim}
+======= ADD NEW TASK =======
+
+Enter task title: Complete Java Assignment
+Enter task description: Finish the OOP project
+
+Select task type:
+  1. Work Task
+  2. Personal Task
+Enter choice (1 or 2): 1
+
+Work Task added successfully!
+  Task ID: 1
+  Title: Complete Java Assignment
+\end{verbatim}
+\end{minipage}
+
+%==============================================================================
+\section{Testing and Results}
+%==============================================================================
+
+\subsection{Test Strategy}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|p{4cm}|p{5cm}|}
+\hline
+\textbf{Feature} & \textbf{Test Method} & \textbf{Input Validation} \\
+\hline
+Add Task & Manual testing with various inputs & Empty title check, invalid type selection \\
+\hline
+Mark Completed & Test with valid and invalid indices & Index bounds checking, already-completed check \\
+\hline
+Display Tasks & Visual inspection of formatting & Empty list handling \\
+\hline
+Save/Load & File creation and data integrity & File I/O error handling \\
+\hline
+Menu Navigation & All menu options tested & Invalid choice handling \\
+\hline
+\end{tabular}
+\caption{Test Strategy Overview}
+\end{table}
+\newpage
+\textbf{Input Validation Tests Performed:}
+\begin{itemize}
+    \item Empty task title $\rightarrow$ Shows error message, task not created
+    \item Non-numeric menu choice $\rightarrow$ Caught by NumberFormatException
+    \item Invalid task index $\rightarrow$ Throws TaskNotFoundException with helpful message
+    \item Invalid task type selection $\rightarrow$ Shows error, returns to menu
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\subsection{Sample Outputs}
+%------------------------------------------------------------------------------
+
+\subsubsection{Adding Tasks}
+
+\begin{minipage}{\linewidth}
+\begin{verbatim}
+======= ADD NEW TASK =======
+
+Enter task title: Study for Exams
+Enter task description: Review chapters 1-5
+
+Select task type:
+  1. Work Task
+  2. Personal Task
+Enter choice (1 or 2): 2
+
+Personal Task added successfully!
+  Task ID: 1
+  Title: Study for Exams
+\end{verbatim}
+\end{minipage}
+
+\subsubsection{Viewing Tasks}
+
+\begin{minipage}{\linewidth}
+\begin{verbatim}
+======= ALL TASKS =======
+
+Total tasks: 2
+
+[WORK TASK] ID: 1
+Title: Complete Java Assignment
+Description: Finish the OOP project
+Status: Pending
+
+[PERSONAL TASK] ID: 2
+Title: Study for Exams
+Description: Review chapters 1-5
+Status: Completed
+\end{verbatim}
+\end{minipage}
+
+\subsubsection{Marking Tasks as Completed}
+
+\begin{minipage}{\linewidth}
+\begin{verbatim}
+======= MARK TASK COMPLETED =======
+
+Available Tasks:
+-----------------------------------------
+  0. [ ] [Work] Complete Java Assignment
+  1. [X] [Personal] Study for Exams
+-----------------------------------------
+
+Enter the index of the task to mark as completed: 0
+
+Task marked as completed!
+  Title: Complete Java Assignment
+\end{verbatim}
+\end{minipage}
+
+\subsubsection{Handling Errors}
+
+\begin{minipage}{\linewidth}
+\begin{verbatim}
+Enter your choice: abc
+Invalid input! Please enter a valid number.
+
+Enter the index of the task to mark as completed: 99
+Error: Task not found at index 99. Valid range: 0 to 1
+\end{verbatim}
+\end{minipage}
+
+%==============================================================================
+\section{Conclusion}
+%==============================================================================
+
+\subsection{Project Achievements}
+
+The Smart Task Manager successfully implements a functional task management application that allows users to create, track, and manage tasks through an intuitive console interface. The application demonstrates proper use of Object-Oriented Programming principles including encapsulation, inheritance, polymorphism, and exception handling.
+
+\subsection{OOP Concepts Learned}
+
+Through this project, the following OOP concepts were practically applied:
+
+\begin{itemize}
+    \item \textbf{Encapsulation}: Using private fields with public accessors protects data integrity
+    \item \textbf{Inheritance}: Creating specialized task types (WorkTask, PersonalTask) from a common base class promotes code reuse
+    \item \textbf{Polymorphism}: Storing different task types in a single collection and calling overridden methods enables flexible, extensible code
+    \item \textbf{Abstraction}: The abstract Task class defines a contract that subclasses must fulfill
+    \item \textbf{Exception Handling}: Custom exceptions and try-catch blocks make the application robust and user-friendly
+\end{itemize}
+
+\subsection{Future Enhancements}
+
+Potential improvements for future versions:
+
+\begin{enumerate}
+    \item \textbf{Priority Levels}: Add high/medium/low priority to tasks
+    \item \textbf{Due Dates}: Add deadline tracking with reminder functionality
+    \item \textbf{Task Categories}: Allow custom categories beyond Work/Personal
+    \item \textbf{Search Functionality}: Search tasks by keyword or filter by various criteria
+    \item \textbf{GUI Interface}: Develop a graphical user interface using JavaFX or Swing
+    \item \textbf{Database Storage}: Replace file storage with SQLite or MySQL database
+    \item \textbf{Task Editing}: Allow modification of existing task titles and descriptions
+    \item \textbf{Task Deletion}: Add ability to remove tasks from the list
+    \item \textbf{Statistics Dashboard}: Show completion rates and productivity metrics
+    \item \textbf{Export Options}: Export tasks to PDF or CSV format
+\end{enumerate}
+
+%==============================================================================
+\section{References}
+%==============================================================================
+
+\begin{enumerate}
+    \item CSE110: Object Oriented Programming - Lecture Slides (Fall 2025)
+    \item Oracle Java Documentation (Javadoc) - \url{https://docs.oracle.com/javase/}
+    \item Claude Opus (Anthropic AI Assistant) - Used for Terminal UI and debugging
+    \item Overleaf - Online LaTeX Editor for report writing.
+\end{enumerate}
+
+\vspace{1cm}
+\hrule
+\vspace{0.5cm}
+\centering
+\textit{End of the report}
+\end{document}

@@ -1,0 +1,12 @@
+Code Link: https://ideone.com/hDKgZv
+
+Included methods:
+insert at the first position,
+insert at a particular position,
+delete a particular value
+print the list
+
+
+
+Stack Code
+Link: https://ideone.com/R24unp
