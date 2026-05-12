@@ -1,0 +1,148 @@
+
+**** 01/14/26 14:06:15 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Exp 01 - 14 Jan 2026.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.1 - Web Update 1
+* Wed Jan 14 14:06:14 2026
+
+
+
+** Analysis setup **
+.DC LIN V_V1 0 50 0.1 
+.OP 
+.LIB "G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Exp 01 - 14 Jan 2026.lib"
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "Exp 01 - 14 Jan 2026.net"
+
+**** INCLUDING "Exp 01 - 14 Jan 2026.net" ****
+* Schematics Netlist *
+
+
+
+R_R1         $N_0001 0  1k  
+V_V1         $N_0002 0 20V
+D_D1         $N_0002 $N_0001 D1N4148-X 
+
+**** RESUMING "Exp 01 - 14 Jan 2026.cir" ****
+.INC "Exp 01 - 14 Jan 2026.als"
+
+
+
+**** INCLUDING "Exp 01 - 14 Jan 2026.als" ****
+* Schematics Aliases *
+
+.ALIASES
+R_R1            R1(1=$N_0001 2=0 )
+V_V1            V1(+=$N_0002 -=0 )
+D_D1            D1(1=$N_0002 2=$N_0001 )
+.ENDALIASES
+
+
+**** RESUMING "Exp 01 - 14 Jan 2026.cir" ****
+.probe
+
+
+.END
+
+Unable to find index file "Exp 01 - 14 Jan 2026.ind" for library file "Exp 01 - 14 Jan 2026.lib"
+Making new index file "Exp 01 - 14 Jan 2026.ind" for library file "Exp 01 - 14 Jan 2026.lib"
+Index has 1 entries from 1 file(s).
+
+**** 01/14/26 14:06:15 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Exp 01 - 14 Jan 2026.sch
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D1N4148-X       
+          IS  393.990000E-12 
+           N    1.3498       
+         ISR    1.565000E-09 
+         IKF     .04417      
+          BV  100            
+         IBV  100.000000E-06 
+          RS     .5664       
+          TT   11.540000E-09 
+         CJO    4.000000E-12 
+          VJ     .586        
+           M     .3333       
+
+
+**** 01/14/26 14:06:15 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Exp 01 - 14 Jan 2026.sch
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)   19.3630                   ($N_0002)   20.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -1.936E-02
+
+    TOTAL POWER DISSIPATION   3.87E-01  WATTS
+
+
+**** 01/14/26 14:06:15 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Exp 01 - 14 Jan 2026.sch
+
+
+ ****     OPERATING POINT INFORMATION      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+
+
+
+**** DIODES
+
+
+NAME         D_D1      
+MODEL        D1N4148-X 
+ID           1.94E-02 
+VD           6.37E-01 
+REQ          2.19E+00 
+CAP          5.28E-09 
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .13
+

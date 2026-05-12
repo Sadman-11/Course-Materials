@@ -1,0 +1,23 @@
+* G:\My Drive\1EWU\Course Content\CSE251\CSE251 Shared\CSE251 Lab Manual\PSpice\Exp-05-1.sch
+
+* Schematics Version 9.1 - Web Update 1
+* Tue Mar 31 15:17:15 2026
+
+
+
+** Analysis setup **
+.tran 45ms 50.5ms SKIPBP
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "Exp-05-1.net"
+.INC "Exp-05-1.als"
+
+
+.probe
+
+
+.END

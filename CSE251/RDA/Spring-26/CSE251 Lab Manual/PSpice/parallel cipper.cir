@@ -1,0 +1,23 @@
+* G:\My Drive\1EWU\Course Content\CSE251\CSE251 Shared\CSE251 Lab Manual\PSpice\parallel cipper.sch
+
+* Schematics Version 9.1 - Web Update 1
+* Sun Feb 01 12:52:12 2026
+
+
+
+** Analysis setup **
+.tran 0ns 0.1s
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "parallel cipper.net"
+.INC "parallel cipper.als"
+
+
+.probe
+
+
+.END

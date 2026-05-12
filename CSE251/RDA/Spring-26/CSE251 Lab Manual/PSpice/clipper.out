@@ -1,0 +1,180 @@
+
+**** 10/29/25 16:37:04 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\clipper.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.1 - Web Update 1
+* Tue Jul 15 09:31:08 2025
+
+
+
+** Analysis setup **
+.tran 0.1ns 2.5ms
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "clipper.net"
+
+**** INCLUDING clipper.net ****
+* Schematics Netlist *
+
+
+
+V_V2         $N_0001 0 4V
+V_V4         $N_0002 0 DC 0 
++SIN 0 16 1000 0 0 0
+R_R1         $N_0003 $N_0001  1k  
+D_D1         $N_0002 $N_0003 D1N4148 
+
+**** RESUMING clipper.cir ****
+.INC "clipper.als"
+
+
+
+**** INCLUDING clipper.als ****
+* Schematics Aliases *
+
+.ALIASES
+V_V2            V2(+=$N_0001 -=0 )
+V_V4            V4(+=$N_0002 -=0 )
+R_R1            R1(1=$N_0003 2=$N_0001 )
+D_D1            D1(1=$N_0002 2=$N_0003 )
+.ENDALIASES
+
+
+**** RESUMING clipper.cir ****
+.probe
+
+
+.END
+
+**** 10/29/25 16:37:04 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\clipper.sch
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D1N4148         
+          IS    2.682000E-09 
+           N    1.836        
+         ISR    1.565000E-09 
+         IKF     .04417      
+          BV  100            
+         IBV  100.000000E-06 
+          RS     .5664       
+          TT   11.540000E-09 
+         CJO    4.000000E-12 
+          VJ     .5          
+           M     .3333       
+
+
+**** 10/29/25 16:37:04 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\clipper.sch
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)    4.0000                   ($N_0002)    0.0000                       
+
+($N_0003)    4.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V2        -5.937E-09
+    V_V4         5.937E-09
+
+    TOTAL POWER DISSIPATION   2.37E-08  WATTS
+
+
+**** 10/29/25 16:37:04 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\clipper.sch
+
+
+ ****     OPERATING POINT INFORMATION      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+
+
+
+**** DIODES
+
+
+NAME         D_D1      
+MODEL        D1N4148   
+ID          -5.94E-09 
+VD          -4.00E+00 
+REQ          8.30E+09 
+CAP          1.92E-12 
+**** 10/29/25 16:37:04 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\clipper.sch
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)    4.0000                   ($N_0002)    0.0000                       
+
+($N_0003)    4.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V2        -5.937E-09
+    V_V4         5.937E-09
+
+    TOTAL POWER DISSIPATION   2.37E-08  WATTS
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .06
+

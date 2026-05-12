@@ -1,0 +1,23 @@
+* G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\clipper.sch
+
+* Schematics Version 9.1 - Web Update 1
+* Tue Jul 15 09:31:08 2025
+
+
+
+** Analysis setup **
+.tran 0.1ns 2.5ms
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "clipper.net"
+.INC "clipper.als"
+
+
+.probe
+
+
+.END

@@ -1,0 +1,24 @@
+* G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Exp 01 - 14 Jan 2026.sch
+
+* Schematics Version 9.1 - Web Update 1
+* Wed Jan 14 14:06:14 2026
+
+
+
+** Analysis setup **
+.DC LIN V_V1 0 50 0.1 
+.OP 
+.LIB "G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Exp 01 - 14 Jan 2026.lib"
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "Exp 01 - 14 Jan 2026.net"
+.INC "Exp 01 - 14 Jan 2026.als"
+
+
+.probe
+
+
+.END

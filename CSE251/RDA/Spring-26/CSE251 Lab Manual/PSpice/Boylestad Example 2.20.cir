@@ -1,0 +1,23 @@
+* G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Boylestad Example 2.20.sch
+
+* Schematics Version 9.1 - Web Update 1
+* Thu Jul 17 11:01:09 2025
+
+
+
+** Analysis setup **
+.tran 0.1ns 50ms
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "Boylestad Example 2.20.net"
+.INC "Boylestad Example 2.20.als"
+
+
+.probe
+
+
+.END

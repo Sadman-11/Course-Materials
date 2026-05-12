@@ -1,0 +1,156 @@
+
+**** 02/25/26 11:08:30 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Shared\CSE251 Lab Manual\PSpice\EXP-04-1.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.1 - Web Update 1
+* Wed Feb 25 11:08:19 2026
+
+
+
+** Analysis setup **
+.tran 0ns 3ms
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "EXP-04-1.net"
+
+**** INCLUDING EXP-04-1.net ****
+* Schematics Netlist *
+
+
+
+R_R1         $N_0002 $N_0001  1k  
+R_R2         $N_0003 $N_0001  1k  
+R_R4         $N_0001 $N_0004  2k  
+E_U1         $N_0004 0 VALUE {LIMIT(V($N_0001,0)*1E6,-15V,+15V)}
+V_V1         $N_0002 0 2V
+V_V2         $N_0003 0  
++SIN 0 5 1000 0 0 0
+R_R3         $N_0004 0  1k  
+
+**** RESUMING EXP-04-1.cir ****
+.INC "EXP-04-1.als"
+
+
+
+**** INCLUDING EXP-04-1.als ****
+* Schematics Aliases *
+
+.ALIASES
+R_R1            R1(1=$N_0002 2=$N_0001 )
+R_R2            R2(1=$N_0003 2=$N_0001 )
+R_R4            R4(1=$N_0001 2=$N_0004 )
+E_U1            U1(OUT=$N_0004 +=$N_0001 -=0 )
+V_V1            V1(+=$N_0002 -=0 )
+V_V2            V2(+=$N_0003 -=0 )
+R_R3            R3(1=$N_0004 2=0 )
+.ENDALIASES
+
+
+**** RESUMING EXP-04-1.cir ****
+.probe
+
+
+.END
+
+**** 02/25/26 11:08:30 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Shared\CSE251 Lab Manual\PSpice\EXP-04-1.sch
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)-4.000E-06                   ($N_0002)    2.0000                       
+
+($N_0003)    0.0000                   ($N_0004)   -4.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -2.000E-03
+    V_V2        -4.000E-09
+
+    TOTAL POWER DISSIPATION   4.00E-03  WATTS
+
+
+**** 02/25/26 11:08:30 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Shared\CSE251 Lab Manual\PSpice\EXP-04-1.sch
+
+
+ ****     OPERATING POINT INFORMATION      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+
+
+
+**** VOLTAGE-CONTROLLED VOLTAGE SOURCES
+
+
+NAME         E_U1      
+V-SOURCE    -4.000E+00
+I-SOURCE     6.000E-03
+**** 02/25/26 11:08:30 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Shared\CSE251 Lab Manual\PSpice\EXP-04-1.sch
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)-4.000E-06                   ($N_0002)    2.0000                       
+
+($N_0003)    0.0000                   ($N_0004)   -4.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -2.000E-03
+    V_V2        -4.000E-09
+
+    TOTAL POWER DISSIPATION   4.00E-03  WATTS
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .08
+

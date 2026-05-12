@@ -1,0 +1,197 @@
+
+**** 07/17/25 10:38:01 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Boylestad Example 2.18.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.1 - Web Update 1
+* Thu Jul 17 10:38:01 2025
+
+
+
+** Analysis setup **
+.tran 0.1ns 50ms
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "Boylestad Example 2.18.net"
+
+**** INCLUDING "Boylestad Example 2.18.net" ****
+* Schematics Netlist *
+
+
+
+D_D1         $N_0001 $N_0002 D1N4148 
+R_R1         $N_0002 0  1k  
+V_V1         $N_0003 0  
++SIN 0 20 100 0 0 0
+V_V2         $N_0001 $N_0003 5V
+R_R2         $N_0004 0  1k  
+V_V3         $N_0005 0  
++SIN 0 20 100 0 0 0
+D_D2         $N_0004 $N_0006 D1N4148 
+V_V4         $N_0006 $N_0005 5V
+
+**** RESUMING "Boylestad Example 2.18.cir" ****
+.INC "Boylestad Example 2.18.als"
+
+
+
+**** INCLUDING "Boylestad Example 2.18.als" ****
+* Schematics Aliases *
+
+.ALIASES
+D_D1            D1(1=$N_0001 2=$N_0002 )
+R_R1            R1(1=$N_0002 2=0 )
+V_V1            V1(+=$N_0003 -=0 )
+V_V2            V2(+=$N_0001 -=$N_0003 )
+R_R2            R2(1=$N_0004 2=0 )
+V_V3            V3(+=$N_0005 -=0 )
+D_D2            D2(1=$N_0004 2=$N_0006 )
+V_V4            V4(+=$N_0006 -=$N_0005 )
+.ENDALIASES
+
+
+**** RESUMING "Boylestad Example 2.18.cir" ****
+.probe
+
+
+.END
+
+**** 07/17/25 10:38:01 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Boylestad Example 2.18.sch
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D1N4148         
+          IS    2.682000E-09 
+           N    1.836        
+         ISR    1.565000E-09 
+         IKF     .04417      
+          BV  100            
+         IBV  100.000000E-06 
+          RS     .5664       
+          TT   11.540000E-09 
+         CJO    4.000000E-12 
+          VJ     .5          
+           M     .3333       
+
+
+**** 07/17/25 10:38:01 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Boylestad Example 2.18.sch
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)    5.0000                   ($N_0002)    4.3228                       
+
+($N_0003)    0.0000                   ($N_0004) 6.162E-06                       
+
+($N_0005)    0.0000                   ($N_0006)    5.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -4.323E-03
+    V_V2        -4.323E-03
+    V_V3        -6.162E-09
+    V_V4        -6.162E-09
+
+    TOTAL POWER DISSIPATION   2.16E-02  WATTS
+
+
+**** 07/17/25 10:38:01 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Boylestad Example 2.18.sch
+
+
+ ****     OPERATING POINT INFORMATION      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+
+
+
+**** DIODES
+
+
+NAME         D_D1        D_D2      
+MODEL        D1N4148     D1N4148   
+ID           4.32E-03   -6.16E-09 
+VD           6.77E-01   -5.00E+00 
+REQ          1.14E+01    9.48E+09 
+CAP          1.02E-09    1.80E-12 
+**** 07/17/25 10:38:01 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Boylestad Example 2.18.sch
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)    5.0000                   ($N_0002)    4.3228                       
+
+($N_0003)    0.0000                   ($N_0004) 6.162E-06                       
+
+($N_0005)    0.0000                   ($N_0006)    5.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -4.323E-03
+    V_V2        -4.323E-03
+    V_V3        -6.162E-09
+    V_V4        -6.162E-09
+
+    TOTAL POWER DISSIPATION   2.16E-02  WATTS
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .11
+

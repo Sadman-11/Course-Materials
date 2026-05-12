@@ -1,0 +1,180 @@
+
+**** 02/01/26 12:52:13 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Shared\CSE251 Lab Manual\PSpice\parallel cipper.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.1 - Web Update 1
+* Sun Feb 01 12:52:12 2026
+
+
+
+** Analysis setup **
+.tran 0ns 0.1s
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "parallel cipper.net"
+
+**** INCLUDING "parallel cipper.net" ****
+* Schematics Netlist *
+
+
+
+R_R1         $N_0002 $N_0001  1k  
+D_D1         $N_0001 $N_0003 D1N4148 
+V_V2         0 $N_0003 2V
+V_V1         $N_0002 0  
++SIN 0 6 50 0 0 0
+
+**** RESUMING "parallel cipper.cir" ****
+.INC "parallel cipper.als"
+
+
+
+**** INCLUDING "parallel cipper.als" ****
+* Schematics Aliases *
+
+.ALIASES
+R_R1            R1(1=$N_0002 2=$N_0001 )
+D_D1            D1(1=$N_0001 2=$N_0003 )
+V_V2            V2(+=0 -=$N_0003 )
+V_V1            V1(+=$N_0002 -=0 )
+.ENDALIASES
+
+
+**** RESUMING "parallel cipper.cir" ****
+.probe
+
+
+.END
+
+**** 02/01/26 12:52:13 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Shared\CSE251 Lab Manual\PSpice\parallel cipper.sch
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D1N4148         
+          IS    2.682000E-09 
+           N    1.836        
+         ISR    1.565000E-09 
+         IKF     .04417      
+          BV  100            
+         IBV  100.000000E-06 
+          RS     .5664       
+          TT   11.540000E-09 
+         CJO    4.000000E-12 
+          VJ     .5          
+           M     .3333       
+
+
+**** 02/01/26 12:52:13 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Shared\CSE251 Lab Manual\PSpice\parallel cipper.sch
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)   -1.3798                   ($N_0002)    0.0000                       
+
+($N_0003)   -2.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V2        -1.380E-03
+    V_V1        -1.380E-03
+
+    TOTAL POWER DISSIPATION   2.76E-03  WATTS
+
+
+**** 02/01/26 12:52:13 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Shared\CSE251 Lab Manual\PSpice\parallel cipper.sch
+
+
+ ****     OPERATING POINT INFORMATION      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+
+
+
+**** DIODES
+
+
+NAME         D_D1      
+MODEL        D1N4148   
+ID           1.38E-03 
+VD           6.20E-01 
+REQ          3.47E+01 
+CAP          3.40E-10 
+**** 02/01/26 12:52:13 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Shared\CSE251 Lab Manual\PSpice\parallel cipper.sch
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)   -1.3798                   ($N_0002)    0.0000                       
+
+($N_0003)   -2.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V2        -1.380E-03
+    V_V1        -1.380E-03
+
+    TOTAL POWER DISSIPATION   2.76E-03  WATTS
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .09
+

@@ -1,0 +1,11 @@
+* Schematics Netlist *
+
+
+
+R_Ro         $N_0002 $N_0001  60  
+R_Ri         vd+ vd-  3M  
+R_R2         vd- 0  5k  
+R_R3         vd- $N_0002  40k  
+R_R5         $N_0002 0  20k  
+E_E1         $N_0001 0 vd+ vd- 300000
+V_V1         vd+ 0 3V

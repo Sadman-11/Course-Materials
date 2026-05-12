@@ -1,0 +1,23 @@
+* G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\LabExam-Fall2025-solve.sch
+
+* Schematics Version 9.1 - Web Update 1
+* Wed Dec 17 09:37:40 2025
+
+
+
+** Analysis setup **
+.tran 0.1ns 5ms
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "LabExam-Fall2025-solve.net"
+.INC "LabExam-Fall2025-solve.als"
+
+
+.probe
+
+
+.END

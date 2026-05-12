@@ -1,0 +1,124 @@
+
+**** 09/11/25 12:06:54 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Q1.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.1 - Web Update 1
+* Thu Sep 11 12:06:54 2025
+
+
+
+** Analysis setup **
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "Q1.net"
+
+**** INCLUDING Q1.net ****
+* Schematics Netlist *
+
+
+
+R_Ro         $N_0002 $N_0001  60  
+R_Ri         vd+ vd-  3M  
+R_R2         vd- 0  5k  
+R_R3         vd- $N_0002  40k  
+R_R5         $N_0002 0  20k  
+E_E1         $N_0001 0 vd+ vd- 300000
+V_V1         vd+ 0 3V
+
+**** RESUMING Q1.cir ****
+.INC "Q1.als"
+
+
+
+**** INCLUDING Q1.als ****
+* Schematics Aliases *
+
+.ALIASES
+R_Ro            Ro(1=$N_0002 2=$N_0001 )
+R_Ri            Ri(1=vd+ 2=vd- )
+R_R2            R2(1=vd- 2=0 )
+R_R3            R3(1=vd- 2=$N_0002 )
+R_R5            R5(1=$N_0002 2=0 )
+E_E1            E1(3=$N_0001 4=0 1=vd+ 2=vd- )
+V_V1            V1(+=vd+ -=0 )
+_    _(vd+=vd+)
+_    _(vd-=vd-)
+.ENDALIASES
+
+
+**** RESUMING Q1.cir ****
+.probe
+
+
+.END
+
+**** 09/11/25 12:06:54 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Q1.sch
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(  vd+)    3.0000  (  vd-)    3.0000  ($N_0001)     .5941                       
+
+($N_0002)     .5959                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -6.601E-04
+
+    TOTAL POWER DISSIPATION   1.98E-03  WATTS
+
+
+**** 09/11/25 12:06:54 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Q1.sch
+
+
+ ****     OPERATING POINT INFORMATION      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+
+
+
+**** VOLTAGE-CONTROLLED VOLTAGE SOURCES
+
+
+NAME         E_E1      
+V-SOURCE     5.941E-01
+I-SOURCE     3.031E-05
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .08
+

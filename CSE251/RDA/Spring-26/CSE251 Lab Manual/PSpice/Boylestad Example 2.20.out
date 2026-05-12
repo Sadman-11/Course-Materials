@@ -1,0 +1,180 @@
+
+**** 07/17/25 11:01:09 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Boylestad Example 2.20.sch
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+* Schematics Version 9.1 - Web Update 1
+* Thu Jul 17 11:01:09 2025
+
+
+
+** Analysis setup **
+.tran 0.1ns 50ms
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "Boylestad Example 2.20.net"
+
+**** INCLUDING "Boylestad Example 2.20.net" ****
+* Schematics Netlist *
+
+
+
+R_R1         $N_0002 $N_0001  1k  
+D_D1         $N_0003 $N_0001 D1N4148 
+V_V1         $N_0002 0  
++SIN 0 16 100 0 0 0
+V_V2         $N_0003 0 -4V
+
+**** RESUMING "Boylestad Example 2.20.cir" ****
+.INC "Boylestad Example 2.20.als"
+
+
+
+**** INCLUDING "Boylestad Example 2.20.als" ****
+* Schematics Aliases *
+
+.ALIASES
+R_R1            R1(1=$N_0002 2=$N_0001 )
+D_D1            D1(1=$N_0003 2=$N_0001 )
+V_V1            V1(+=$N_0002 -=0 )
+V_V2            V2(+=$N_0003 -=0 )
+.ENDALIASES
+
+
+**** RESUMING "Boylestad Example 2.20.cir" ****
+.probe
+
+
+.END
+
+**** 07/17/25 11:01:09 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Boylestad Example 2.20.sch
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               D1N4148         
+          IS    2.682000E-09 
+           N    1.836        
+         ISR    1.565000E-09 
+         IKF     .04417      
+          BV  100            
+         IBV  100.000000E-06 
+          RS     .5664       
+          TT   11.540000E-09 
+         CJO    4.000000E-12 
+          VJ     .5          
+           M     .3333       
+
+
+**** 07/17/25 11:01:09 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Boylestad Example 2.20.sch
+
+
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)-5.937E-06                   ($N_0002)    0.0000                       
+
+($N_0003)   -4.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -5.937E-09
+    V_V2         5.937E-09
+
+    TOTAL POWER DISSIPATION   2.37E-08  WATTS
+
+
+**** 07/17/25 11:01:09 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Boylestad Example 2.20.sch
+
+
+ ****     OPERATING POINT INFORMATION      TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+
+
+
+**** DIODES
+
+
+NAME         D_D1      
+MODEL        D1N4148   
+ID          -5.94E-09 
+VD          -4.00E+00 
+REQ          8.30E+09 
+CAP          1.92E-12 
+**** 07/17/25 11:01:09 *********** Evaluation PSpice (Nov 1999) **************
+
+ * G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Boylestad Example 2.20.sch
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+($N_0001)-5.937E-06                   ($N_0002)    0.0000                       
+
+($N_0003)   -4.0000                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1        -5.937E-09
+    V_V2         5.937E-09
+
+    TOTAL POWER DISSIPATION   2.37E-08  WATTS
+
+
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .08
+

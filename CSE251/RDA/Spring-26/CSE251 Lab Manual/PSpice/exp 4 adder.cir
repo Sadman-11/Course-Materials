@@ -1,0 +1,22 @@
+* G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\exp 4 adder.sch
+
+* Schematics Version 9.1 - Web Update 1
+* Sun Aug 03 10:24:53 2025
+
+
+
+** Analysis setup **
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "exp 4 adder.net"
+.INC "exp 4 adder.als"
+
+
+.probe
+
+
+.END

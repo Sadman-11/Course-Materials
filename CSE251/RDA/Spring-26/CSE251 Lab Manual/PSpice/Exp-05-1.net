@@ -1,0 +1,10 @@
+* Schematics Netlist *
+
+
+
+R_R1         $N_0002 $N_0001  1k  
+E_U1         $N_0003 0 VALUE {LIMIT(V(0,$N_0001)*1E6,-15V,+15V)}
+V_V1         $N_0002 0 DC 0 
++PULSE 1 -1 0 1n 1n 628.314us 1.256628ms
+C_C1         $N_0001 $N_0003  0.1u IC=0 
+R_R5         $N_0001 $N_0003  999999999999999M  

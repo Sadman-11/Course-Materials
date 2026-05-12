@@ -1,0 +1,24 @@
+* G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Exp 01.sch
+
+* Schematics Version 9.1 - Web Update 1
+* Wed Oct 29 15:53:44 2025
+
+
+
+** Analysis setup **
+.DC LIN V_V2 0 25 0.001 
+.tran 0.1ns 2.5ms
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "Exp 01.net"
+.INC "Exp 01.als"
+
+
+.probe
+
+
+.END

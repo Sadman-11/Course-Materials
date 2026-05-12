@@ -1,0 +1,22 @@
+* G:\My Drive\1EWU\Course Content\CSE251\CSE251 Lab Manual\PSpice\Exp 4.sch
+
+* Schematics Version 9.1 - Web Update 1
+* Wed Aug 13 09:00:04 2025
+
+
+
+** Analysis setup **
+.OP 
+
+
+* From [PSPICE NETLIST] section of pspiceev.ini:
+.lib "nom.lib"
+
+.INC "Exp 4.net"
+.INC "Exp 4.als"
+
+
+.probe
+
+
+.END
