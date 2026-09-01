@@ -1,0 +1,400 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{hyperref}
+
+\definecolor{headingblue}{HTML}{2E75B6}
+\definecolor{termbg}{HTML}{1E1E1E}
+\definecolor{termfg}{HTML}{D4D4D4}
+\definecolor{notebg}{HTML}{FFF7E0}
+\definecolor{notebrd}{HTML}{C9A227}
+
+\titleformat{\section}{\Large\bfseries\color{headingblue}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{18pt}{10pt}
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}
+
+\newtcolorbox{terminal}{
+  colback=termbg, colframe=black!60, boxrule=0.5pt,
+  fontupper=\ttfamily\small\color{termfg},
+  left=6pt, right=6pt, top=4pt, bottom=4pt
+}
+
+\newtcolorbox{notebox}{
+  colback=notebg, colframe=notebrd, boxrule=0.5pt,
+  left=6pt, right=6pt, top=4pt, bottom=4pt,
+  fontupper=\itshape\small
+}
+
+\newcommand{\func}[2]{\item \texttt{#1}: #2}
+
+\begin{document}
+
+% ---------------- Cover Page ----------------
+\begin{titlepage}
+\centering
+
+\raisebox{-0.40\height}{\includegraphics[width=3.0cm]{ewu-logo.png}}%
+\hspace{10pt}%
+{\fontsize{24}{28}\selectfont\scshape East West University}
+
+\vspace{1.1cm}
+
+{\large\bfseries\color{headingblue} PROJECT REPORT}
+
+\vspace{0.9cm}
+
+\begin{tabular}{@{}r@{\hspace{8pt}}l@{}}
+\textbf{Semester}     & : Summer -- 2026 \\[4pt]
+\textbf{Course Title} & : Data Structure \\[4pt]
+\textbf{Course Code}  & : CSE207 \\[4pt]
+\textbf{Section}      & : 01 \\
+\end{tabular}
+
+\vspace{0.8cm}
+
+{\bfseries Assignment: Problem 03}\\[4pt]
+{\bfseries Group No: 07}
+
+\vspace{1.0cm}
+
+\raggedright
+{\bfseries Submitted to:}
+
+\vspace{0.4cm}
+\hspace{1.0cm}%
+\begin{minipage}{0.85\textwidth}
+Dr. Maheen Islam \\
+Chairperson, Professor \\
+Department of Computer Science \& Engineering \\
+East West University.
+\end{minipage}
+
+\vspace{1.0cm}
+
+{\bfseries Submitted By:}
+
+\vspace{0.4cm}
+
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{|>{\centering\arraybackslash}m{3.3cm}|>{\centering\arraybackslash}m{2.6cm}|X|}
+\hline
+\textbf{\color{headingblue}Name} & \textbf{\color{headingblue}ID} & \centering\arraybackslash\textbf{\color{headingblue}Contribution} \\
+\hline
+\textbf{Shafkat Rahman} & \textbf{2025-1-60-001} &
+\textbf{\color{headingblue}Function:} addEdge, isConnected, countConnectedComponents. \par\smallskip
+\textbf{\color{headingblue}Report:} Problem Definition, Program Implementation. \\
+\hline
+\textbf{Abdur Rahman Moayed} & \textbf{2025-1-60-015} &
+\textbf{\color{headingblue}Function:} createGraph, getLeafVertices, getNoOutgoingEdge. \par\smallskip
+\textbf{\color{headingblue}Report:} Data Structures Used, Sample Input and Output. \\
+\hline
+\textbf{Sadman Showmik Anik} & \textbf{2025-1-60-055} &
+\textbf{\color{headingblue}Function:} removeEdge, printAdjacencyList, bfs, getTotalDegree. \par\smallskip
+\textbf{\color{headingblue}Report:} Objectives, Algorithm. \\
+\hline
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
+
+\end{titlepage}
+
+% ---------------- 1. Problem Definition ----------------
+\section{Problem Definition}
+
+The task assigned in this project is to implement a graph using an adjacency list and to perform a set of standard operations on it. A graph is a collection of vertices (nodes) connected by edges, and an adjacency list is a way of storing a graph where each vertex keeps a list of the other vertices it is directly connected to.
+
+In this project, the graph is directed, meaning each edge has a specific starting vertex and ending vertex (for example, an edge from vertex 0 to vertex 1 does not automatically mean there is an edge from vertex 1 back to vertex 0). The program must let the user build such a graph from scratch, add and remove edges, print the adjacency list, traverse the graph using Breadth First Search (BFS), and analyze several properties of the graph, such as which vertices have no outgoing edges, how connected the graph is, the degree of each vertex, and how many separate connected pieces (components) the graph is made of.
+
+Specifically, the program is required to perform the following ten operations:
+
+\begin{enumerate}[topsep=2pt, itemsep=2pt]
+  \item Create a graph with a given number of vertices.
+  \item Add edges to the graph.
+  \item Remove edges from the graph.
+  \item Print the adjacency list representation of the graph.
+  \item Perform a Breadth First Search (BFS) starting from a given vertex.
+  \item Display all leaf vertices (end vertices) of the graph.
+  \item Check whether the graph is connected or not.
+  \item Find the total degree of all vertices.
+  \item Display all vertices that have no outgoing edge.
+  \item Count the number of connected components in the graph.
+\end{enumerate}
+
+All of this is done through a simple, menu-driven console program, so the user can select any operation from a menu and try it interactively.
+
+% ---------------- 2. Objectives ----------------
+\section{Objectives}
+
+The main learning objectives of this project are:
+
+\begin{itemize}[topsep=2pt, itemsep=2pt]
+  \item To understand how a graph can be represented in memory using an adjacency list.
+  \item To implement core graph operations such as adding and removing edges.
+  \item To understand and implement the Breadth First Search (BFS) traversal technique.
+  \item To analyze graph properties, including vertex degree (in-degree and out-degree), leaf vertices, connectivity, and connected components.
+  \item To practice writing modular, readable C++ code using clearly separated functions, each handling one graph operation.
+  \item To build a simple interactive menu-driven program that ties all these operations together.
+\end{itemize}
+
+% ---------------- 3. Data Structures Used ----------------
+\section{Data Structures Used}
+
+To keep the program simple and beginner-friendly, this implementation avoids advanced Standard Template Library (STL) containers such as \texttt{vector} and \texttt{queue}. The graph itself is built out of linked lists, and the few supporting structures are plain, fixed-size C++ arrays. The following data structures are used:
+
+\subsection*{Adjacency List (Array of Linked Lists)}
+The graph is stored as an array of linked lists. Every vertex $u$ owns one singly linked list that holds exactly the vertices reachable directly from $u$ by a single edge, and the array \texttt{adjacencyList[MAX\_VERTICES]} stores the head pointer of each of those lists. A vertex with no outgoing edges simply has \texttt{NULL} as its head pointer.
+
+Each element of a list is a node, declared as a small structure with two fields: \texttt{vertex}, which holds the number of the neighbouring vertex, and \texttt{next}, a pointer to the following node of the same list (or \texttt{NULL} at the end of the list). A node is created with \texttt{new} only when an edge is actually added, and released with \texttt{delete} as soon as that edge is removed, so the graph occupies only as much memory as the edges it currently contains. No companion counter of neighbours is needed either, because the end of a list is marked by the \texttt{NULL} pointer.
+
+\subsection*{Degree Arrays}
+Two one-dimensional arrays, \texttt{inDegree[]} and \texttt{outDegree[]}, keep a running count of how many edges point into and out of each vertex. These are updated whenever an edge is added or removed, so the degree of any vertex can be looked up instantly instead of being recalculated every time.
+
+\subsection*{Visited Array}
+A boolean array, \texttt{visited[]}, is used during BFS-based operations (BFS traversal, connectivity checking, and counting connected components) to keep track of which vertices have already been explored, so the program never processes the same vertex twice.
+
+\subsection*{A Simple Array-Based Queue}
+Breadth First Search normally relies on a queue. Instead of using the STL \texttt{std::queue}, this program implements its own minimal queue using an integer array (\texttt{queueArr[]}) together with two index variables, \texttt{front} and \texttt{rear}. Adding a vertex to the queue means placing it at position \texttt{rear} and increasing \texttt{rear} by one; removing a vertex from the queue means reading the value at position \texttt{front} and increasing \texttt{front} by one. The queue is empty whenever \texttt{front} equals \texttt{rear}.
+
+This approach keeps every data structure in the program at the level of plain arrays and simple loops, which makes the internal working of the graph fully visible and easy to trace by hand, making it a good fit for a first graph project.
+
+% ---------------- 4. Algorithm ----------------
+\section{Algorithm}
+
+\subsection{Create Graph}
+\begin{enumerate}[topsep=2pt, itemsep=2pt]
+  \item Ask the user for the number of vertices, $V$.
+  \item Set every vertex's list head pointer to \texttt{NULL}, so every list starts out empty.
+  \item Set every vertex's in-degree and out-degree to 0.
+\end{enumerate}
+
+\subsection{Add Edge (u, v)}
+\begin{enumerate}[topsep=2pt, itemsep=2pt]
+  \item Check that $u$ and $v$ are valid vertex numbers (between 0 and $V-1$).
+  \item Walk $u$'s linked list to see if $v$ is already present.
+  \item If $v$ is already a neighbor of $u$, report that the edge already exists.
+  \item Otherwise, create a new node holding $v$ and attach it to the end of $u$'s linked list.
+  \item Increase \texttt{outDegree[u]} by 1 and \texttt{inDegree[v]} by 1.
+\end{enumerate}
+
+\subsection{Remove Edge (u, v)}
+\begin{enumerate}[topsep=2pt, itemsep=2pt]
+  \item Check that $u$ and $v$ are valid vertex numbers.
+  \item Walk $u$'s linked list to find the node holding $v$, remembering the node before it.
+  \item If $v$ is not found, report that the edge does not exist.
+  \item Otherwise, unlink that node by making the previous node point to the node after it (or, if it was the first node, by moving the head pointer forward), and free the unlinked node.
+  \item Decrease \texttt{outDegree[u]} by 1 and \texttt{inDegree[v]} by 1.
+\end{enumerate}
+
+\subsection{Print Adjacency List}
+\begin{enumerate}[topsep=2pt, itemsep=2pt]
+  \item For every vertex from 0 to $V-1$, print its number, then walk its linked list and print each neighbour it holds.
+  \item If a vertex has no neighbors, print an empty list for it.
+\end{enumerate}
+
+\subsection{Breadth First Search (BFS)}
+\begin{enumerate}[topsep=2pt, itemsep=2pt]
+  \item Mark the starting vertex as visited and place it in the queue.
+  \item While the queue is not empty, remove a vertex from the front of the queue and record it as visited in the traversal order.
+  \item For each neighbor of that vertex, if it has not been visited yet, mark it visited and place it at the back of the queue.
+  \item Repeat until the queue becomes empty, then print the full traversal order.
+\end{enumerate}
+
+\subsection{Leaf Vertices / Vertices with No Outgoing Edge}
+\begin{enumerate}[topsep=2pt, itemsep=2pt]
+  \item For every vertex, check whether its list head pointer is \texttt{NULL}.
+  \item Collect and print all vertices whose list is empty.
+\end{enumerate}
+
+\subsection{Check Connectivity}
+\begin{enumerate}[topsep=2pt, itemsep=2pt]
+  \item Starting from vertex 0, run a BFS and count how many vertices get visited.
+  \item If the number of visited vertices equals the total number of vertices, the graph is connected; otherwise, it is not.
+\end{enumerate}
+
+\subsection{Total Degree of All Vertices}
+\begin{enumerate}[topsep=2pt, itemsep=2pt]
+  \item For every vertex, add its \texttt{inDegree} and \texttt{outDegree} together to get its total degree.
+  \item Print each vertex's in-degree, out-degree, and total degree, and keep a running sum of all total degrees.
+\end{enumerate}
+
+\subsection{Count Connected Components}
+\begin{enumerate}[topsep=2pt, itemsep=2pt]
+  \item Mark all vertices as unvisited.
+  \item Go through each vertex in order; if it has not been visited, start a new BFS from it: this discovers one full connected component.
+  \item Sort and print the vertices found in that component, then increase the component counter by one.
+  \item Repeat until every vertex has been visited, then print the total number of components found.
+\end{enumerate}
+
+% ---------------- 5. Program Implementation ----------------
+\section{Program Implementation}
+
+The program is written in plain, procedural C++: there is no class and no constructor. The graph itself is simply a set of global variables (the array of list head pointers \texttt{adjacencyList}, the node structure \texttt{Node} that those lists are made of, the arrays \texttt{inDegree} and \texttt{outDegree}, and the flag \texttt{graphExists}), and every operation is a plain function that reads and updates that same global data directly. A menu-driven \texttt{main()} function ties everything together by calling the right function for whichever option the user chooses. A short description of each function follows.
+
+\begin{itemize}[topsep=2pt, itemsep=3pt]
+  \func{createGraph(numVertices)}{Sets up a new, empty graph with the given number of vertices. It first frees the nodes of any graph that was built earlier, then sets every head pointer to \texttt{NULL} and every in-degree and out-degree to zero, and marks that a graph now exists. This plays the role a constructor would play in an object-oriented version.}
+  \func{addEdge(u, v)}{Adds a directed edge from vertex $u$ to vertex $v$ by allocating a new node and linking it at the end of $u$'s list, after checking that the vertices are valid and the edge does not already exist.}
+  \func{removeEdge(u, v)}{Removes the directed edge from $u$ to $v$ if it exists by unlinking the matching node from $u$'s list and freeing it, then updates the degree counts accordingly.}
+  \func{printAdjacencyList()}{Walks and displays the linked list of every vertex in the graph.}
+  \func{bfs(startVertex)}{Performs a Breadth First Search starting from the given vertex and prints the order in which vertices are visited.}
+  \func{getLeafVertices()}{Finds and prints every vertex that currently has no outgoing edges.}
+  \func{isConnected()}{Uses BFS from vertex 0 to determine and report whether the whole graph is reachable from a single starting point.}
+  \func{getTotalDegree()}{Prints the in-degree, out-degree, and total degree of every vertex, along with the sum of all degrees.}
+  \func{getNoOutgoingEdge()}{Prints every vertex that has no outgoing edge (the same condition as a leaf vertex in this program).}
+  \func{countConnectedComponents()}{Repeatedly runs BFS from any not-yet-visited vertex to find and print every connected component in the graph, along with the total number of components.}
+  \func{displayMenu()}{Prints the list of available operations for the user to choose from.}
+  \func{main()}{Repeatedly displays the menu, reads the user's choice, validates it, and calls the matching function (\texttt{createGraph}, \texttt{addEdge}, \texttt{bfs}, and so on) until the user chooses to exit.}
+\end{itemize}
+
+All of these functions live together in a single file so the whole program is easy to read from top to bottom, with the global graph data and its functions defined first and the menu-driven \texttt{main()} program below them.
+
+% ---------------- 6. Sample Input and Output ----------------
+\section{Sample Input and Output}
+
+The following run demonstrates the program in action. A graph with 6 vertices (numbered 0 to 5) is created, and five directed edges are added: $0 \to 1$, $0 \to 2$, $1 \to 3$, $2 \to 3$, and $3 \to 4$. Vertex 5 is deliberately left with no edges, so the graph has one disconnected vertex.
+
+\subsection*{Step 1: Create the graph and add edges}
+\begin{terminal}
+Enter your choice (0-10): 1\\
+Enter number of vertices: 6\\
+Graph created with 6 vertices\\
+\ \\
+Enter your choice (0-10): 2\\
+Enter source vertex: 0\\
+Enter destination vertex: 1\\
+Edge added: 0 -> 1\\
+\ \\
+Enter your choice (0-10): 2\\
+Enter source vertex: 0\\
+Enter destination vertex: 2\\
+Edge added: 0 -> 2\\
+\ \\
+Enter your choice (0-10): 2\\
+Enter source vertex: 1\\
+Enter destination vertex: 3\\
+Edge added: 1 -> 3\\
+\ \\
+Enter your choice (0-10): 2\\
+Enter source vertex: 2\\
+Enter destination vertex: 3\\
+Edge added: 2 -> 3\\
+\ \\
+Enter your choice (0-10): 2\\
+Enter source vertex: 3\\
+Enter destination vertex: 4\\
+Edge added: 3 -> 4
+\end{terminal}
+
+\subsection*{Step 2: Print the adjacency list (option 4)}
+\begin{terminal}
+Adjacency List Representation:\\
+----------------------------------------\\
+Vertex 0: 1 2\\
+Vertex 1: 3\\
+Vertex 2: 3\\
+Vertex 3: 4\\
+Vertex 4: []\\
+Vertex 5: []\\
+----------------------------------------
+\end{terminal}
+
+\subsection*{Step 3: BFS from vertex 0 (option 5)}
+\begin{terminal}
+Enter starting vertex for BFS: 0\\
+\ \\
+BFS starting from vertex 0:\\
+----------------------------------------\\
+Visiting: 0\\
+Visiting: 1\\
+Visiting: 2\\
+Visiting: 3\\
+Visiting: 4\\
+BFS traversal order: 0 1 2 3 4\\
+----------------------------------------
+\end{terminal}
+
+\subsection*{Step 4: Leaf vertices (option 6)}
+\begin{terminal}
+Leaf Vertices (no outgoing edges):\\
+----------------------------------------\\
+Leaf vertices: 4 5\\
+----------------------------------------
+\end{terminal}
+
+\subsection*{Step 5: Connectivity check (option 7)}
+\begin{terminal}
+Connectivity Check:\\
+----------------------------------------\\
+The graph is NOT CONNECTED\\
+----------------------------------------
+\end{terminal}
+
+The graph is reported as not connected because vertex 5 has no edges linking it to any other vertex.
+
+\subsection*{Step 6: Total degree of all vertices (option 8)}
+\begin{terminal}
+Total Degree of All Vertices:\\
+----------------------------------------\\
+Vertex 0: in\_degree=0, out\_degree=2, total\_degree=2\\
+Vertex 1: in\_degree=1, out\_degree=1, total\_degree=2\\
+Vertex 2: in\_degree=1, out\_degree=1, total\_degree=2\\
+Vertex 3: in\_degree=2, out\_degree=1, total\_degree=3\\
+Vertex 4: in\_degree=1, out\_degree=0, total\_degree=1\\
+Vertex 5: in\_degree=0, out\_degree=0, total\_degree=0\\
+Sum of all degrees: 10\\
+----------------------------------------
+\end{terminal}
+
+\subsection*{Step 7: Vertices with no outgoing edge (option 9)}
+\begin{terminal}
+Vertices with No Outgoing Edge:\\
+----------------------------------------\\
+Vertices with no outgoing edges: 4 5\\
+----------------------------------------
+\end{terminal}
+
+\subsection*{Step 8: Connected components (option 10)}
+\begin{terminal}
+Connected Components:\\
+----------------------------------------\\
+Component 1: 0 1 2 3 4\\
+Component 2: 5\\
+Number of connected components: 2\\
+----------------------------------------
+\end{terminal}
+
+As expected, the program finds two components: the main group $\{0, 1, 2, 3, 4\}$ and the isolated vertex $\{5\}$.
+
+\subsection*{Step 9: Remove an edge and print the adjacency list again (options 3 and 4)}
+\begin{terminal}
+Enter your choice (0-10): 3\\
+Enter source vertex: 0\\
+Enter destination vertex: 1\\
+Edge removed: 0 -> 1\\
+\ \\
+Enter your choice (0-10): 4\\
+\ \\
+Adjacency List Representation:\\
+----------------------------------------\\
+Vertex 0: 2\\
+Vertex 1: 3\\
+Vertex 2: 3\\
+Vertex 3: 4\\
+Vertex 4: []\\
+Vertex 5: []\\
+----------------------------------------
+\end{terminal}
+
+\begin{notebox}
+Note: The text above is the exact output produced by running the program. Please replace it with your own screenshots of the program running on your machine before submitting, as required by the guidelines. The input values used here (6 vertices; edges $0\to1$, $0\to2$, $1\to3$, $2\to3$, $3\to4$) are provided so you can reproduce the same run yourself.
+\end{notebox}
+
+\end{document}
